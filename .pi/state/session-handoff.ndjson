@@ -71,3 +71,9 @@
 {"kind":"tool_call","ts":1772056653051,"tool":"bash","id":"bash_1772056653021_5","summary":"echo \"Total Pi/Node Memory Usage:\" && ps -eo rss,comm | grep -E \"pi|node\" | awk '{sum+=$1} END {print sum/1024 \" MB\"}'"}
 {"kind":"tool_result","ts":1772056653088,"tool":"bash","id":"bash_1772056653021_5","status":"ok","isError":false}
 {"kind":"agent_end","ts":1772056659954}
+{"kind":"session_start","ts":1777044791710,"cwd":"/Users/phaedrus/Development/codex"}
+{"kind":"agent_start","ts":1777044791805}
+{"kind":"input","ts":1777044791804,"text":"Say hello in one sentence."}
+{"kind":"session_start","ts":1777044949607,"cwd":"/Users/phaedrus/Development/codex"}
+{"kind":"input","ts":1777044949700,"text":"Reply with exactly: OK"}
+{"kind":"agent_start","ts":1777044949701}
