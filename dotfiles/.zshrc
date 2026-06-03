@@ -102,8 +102,7 @@ if command -v starship &> /dev/null; then
 fi
 
 # --- PROJECT-SPECIFIC EXPORTS ---
-# Codex directory for thinktank integration
-export CODEX_DIR="/Users/phaedrus/Development/codex"
+export WORKBENCH_DIR="/Users/phaedrus/Development/workbench"
 
 # opencode
 export PATH=/Users/phaedrus/.opencode/bin:$PATH

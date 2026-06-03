@@ -27,7 +27,7 @@ projects stats
 
 1. **Edit directly in nvim:**
    ```bash
-   nvim ~/Development/codex/docs/projects.md
+   nvim ~/Development/workbench/docs/projects.md
    ```
 
 2. **Check for sync issues:**
@@ -54,7 +54,7 @@ When ready to develop an idea:
 
 1. Create detailed project file:
    ```bash
-   nvim ~/Development/codex/docs/projects/project-name.md
+   nvim ~/Development/workbench/docs/projects/project-name.md
    ```
 
 2. Use the template from `docs/projects/README.md`:
@@ -96,20 +96,20 @@ docs/
 
 ```bash
 # 1. Add to ideas section in projects.md
-nvim ~/Development/codex/docs/projects.md
+nvim ~/Development/workbench/docs/projects.md
 
 # 2. Pick a name
 projects name my-idea
 
 # 3. Update project-names.md if you assign a name
-nvim ~/Development/codex/docs/project-names.md
+nvim ~/Development/workbench/docs/project-names.md
 ```
 
 ### Starting Development
 
 ```bash
 # 1. Create detailed project file
-nvim ~/Development/codex/docs/projects/my-project.md
+nvim ~/Development/workbench/docs/projects/my-project.md
 
 # 2. Change status from 💡 to 🔨 in projects.md
 

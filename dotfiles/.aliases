@@ -234,7 +234,7 @@ alias lt="eza --tree --git --icons --group-directories-first --color=never"
 alias lta="eza --tree --all --git --icons --group-directories-first --color=never"
 alias dark="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to true'"
 alias light="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to false'"
-alias dev="$DEVELOPMENT/codex/bin/tmux-startup"
+alias dev="$DEVELOPMENT/workbench/bin/tmux-startup"
 alias nerdfetch="$DEVELOPMENT/nerdfetch"
 # p() function defined in ~/.fun (journal entry with frontmatter)
 # Legacy ponder tool available at: $DEVELOPMENT/ponder/target/release/ponder

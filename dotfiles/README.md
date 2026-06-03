@@ -13,7 +13,7 @@ Shell configuration files for consistent development environment.
 
 Automatically symlinked by `install.sh`:
 ```bash
-cd ~/Development/codex && ./install.sh
+cd ~/Development/workbench && ./install.sh
 ```
 
 ## Configuration

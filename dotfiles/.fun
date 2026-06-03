@@ -14,27 +14,27 @@ find_philosophy_files() {
 # Font switching for Alacritty
 switch_font() {
   local font_name="${1:-help}"
-  local config_file="$HOME/Development/codex/dotfiles/.alacritty.toml"
+  local config_file="$HOME/Development/workbench/dotfiles/.alacritty.toml"
   local temp_file=$(mktemp)
   
   case "$font_name" in
     "firacode"|"fira")
-      local font_import="/Users/phaedrus/Development/codex/dotfiles/.alacritty-font-firacode.toml"
+      local font_import="/Users/phaedrus/Development/workbench/dotfiles/.alacritty-font-firacode.toml"
       ;;
     "jetbrains"|"jb")
-      local font_import="/Users/phaedrus/Development/codex/dotfiles/.alacritty-font-jetbrains.toml"
+      local font_import="/Users/phaedrus/Development/workbench/dotfiles/.alacritty-font-jetbrains.toml"
       ;;
     "sourcecodepro"|"scp")
-      local font_import="/Users/phaedrus/Development/codex/dotfiles/.alacritty-font-source-code-pro.toml"
+      local font_import="/Users/phaedrus/Development/workbench/dotfiles/.alacritty-font-source-code-pro.toml"
       ;;
     "cascadia"|"cc")
-      local font_import="/Users/phaedrus/Development/codex/dotfiles/.alacritty-font-cascadia.toml"
+      local font_import="/Users/phaedrus/Development/workbench/dotfiles/.alacritty-font-cascadia.toml"
       ;;
     "victormono"|"vm")
-      local font_import="/Users/phaedrus/Development/codex/dotfiles/.alacritty-font-victor-mono.toml"
+      local font_import="/Users/phaedrus/Development/workbench/dotfiles/.alacritty-font-victor-mono.toml"
       ;;
     "hack"|"hk")
-      local font_import="/Users/phaedrus/Development/codex/dotfiles/.alacritty-font-hack.toml"
+      local font_import="/Users/phaedrus/Development/workbench/dotfiles/.alacritty-font-hack.toml"
       ;;
     "help"|*)
       echo "Usage: switch_font [font_name]"
@@ -52,7 +52,7 @@ switch_font() {
   esac
   
   # Update the font import line in the config file (preserve theme imports)
-  sed "s|/Users/phaedrus/Development/codex/dotfiles/\.alacritty-font-.*\.toml|$font_import|g" "$config_file" > "$temp_file"
+  sed "s|/Users/phaedrus/Development/workbench/dotfiles/\.alacritty-font-.*\.toml|$font_import|g" "$config_file" > "$temp_file"
   mv "$temp_file" "$config_file"
   
   # Touch the config file to trigger live reload
@@ -63,7 +63,7 @@ switch_font() {
 
 # Get current font
 get_current_font() {
-  local config_file="$HOME/Development/codex/dotfiles/.alacritty.toml"
+  local config_file="$HOME/Development/workbench/dotfiles/.alacritty.toml"
   local font_line=$(grep "\.alacritty-font-.*\.toml" "$config_file")
   
   if [[ $font_line == *"firacode"* ]]; then
@@ -297,46 +297,6 @@ _ph_identity_ssh() {
   "
 }
 
-# --- CODEX NATIVE MULTI-AGENT REVIEW ---
-# Uses subagent injection: parent sees all child results in context
-
-cxreview() {
-  local target="${1:-$(git diff --name-only HEAD~1 | head -20 | tr '\n' ' ')}"
-  codex -q "
-    You are a tech lead orchestrating a code review.
-
-    Spawn these agents in parallel:
-    1. grug agent: review for complexity demons in: $target
-    2. carmack agent: review for shippability and YAGNI in: $target
-    3. ousterhout agent: review for module depth and information hiding in: $target
-
-    Wait for all results. Then synthesize:
-    - Deduplicate findings across reviewers
-    - Resolve conflicts (if reviewers disagree, explain your call)
-    - Prioritize: critical (block merge) > important (fix in PR) > suggestion
-    - Output: action plan with file:line references
-  "
-}
-
-cxreview-full() {
-  local target="${1:-$(git diff --name-only HEAD~1 | head -20 | tr '\n' ' ')}"
-  codex -q "
-    You are a tech lead orchestrating a comprehensive code review.
-
-    Spawn ALL these agents in parallel:
-    1. grug: complexity demons, premature abstraction
-    2. carmack: shippability, YAGNI, focus
-    3. ousterhout: module depth, information hiding
-    4. torvalds: correctness, clarity, pragmatic efficiency
-    5. beck: TDD discipline, test quality
-
-    Wait for all results. Synthesize into:
-    - Consensus findings (2+ reviewers agree)
-    - Conflicts resolved (with reasoning)
-    - Prioritized action plan: critical > important > suggestion
-    - Positive observations (what was done well)
-  "
-}
 
 ph() {
   if [[ $# -eq 0 ]]; then

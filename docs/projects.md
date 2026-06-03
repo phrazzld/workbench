@@ -29,7 +29,7 @@
 |------|-------------|--------|--------|------|
 | whetstone | mobile app for tracking your reading | phrazzld/whetstone | ⏸️ | mobile, reading |
 | brainrot | zoomer translations of classic literature | phrazzld/brainrot | ⏸️ | web, publishing |
-| codex | dotfiles, configs, references, and so on | phrazzld/codex | ⏸️ | config |
+| workbench | dotfiles, configs, references, and local development utilities | phrazzld/workbench | ⏸️ | config |
 | gitpulse | git activity summaries and insights - github analytics for deep code contribution insights | phrazzld/gitpulse | ⏸️ | cli, analytics |
 | superwire | on demand podcasts on anything - personalized news aggregator with autogen political cartoons | phrazzld/superwire | ⏸️ | web, ai, podcast |
 | unspendable | web app showing which utxos are unspendable in current fee market | phrazzld/unspendable | ⏸️ | web, bitcoin |

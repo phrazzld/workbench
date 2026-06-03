@@ -4,7 +4,7 @@
 # Usage: alacritty-theme [theme-name|list|search|toggle]
 
 THEMES_DIR="/Users/phaedrus/Development/alacritty-theme/themes"
-ALACRITTY_CONFIG="/Users/phaedrus/Development/codex/dotfiles/.alacritty.toml"
+ALACRITTY_CONFIG="/Users/phaedrus/Development/workbench/dotfiles/.alacritty.toml"
 
 # Curated themes
 CURATED_THEMES=(
@@ -122,7 +122,7 @@ get_theme_colors() {
 # Function to update Rose Pine tmux variant
 update_rose_pine_variant() {
     local theme=$1
-    local tmux_config="/Users/phaedrus/Development/codex/dotfiles/.tmux.conf"
+    local tmux_config="/Users/phaedrus/Development/workbench/dotfiles/.tmux.conf"
     
     case "$theme" in
         "rose_pine_dawn")

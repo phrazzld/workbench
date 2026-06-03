@@ -169,7 +169,7 @@ Create project-based workspaces:
 
 **Example workflow:**
 ```
-Ctrl+b s → "codex" → Create workspace for codex project
+Ctrl+b s → "workbench" → Create workspace for workbench project
 Ctrl+b s → "docs" → Create workspace for documentation
 Ctrl+b s → Switch back to previous workspace
 ```
@@ -296,7 +296,7 @@ WezTerm keybindings are designed to match tmux:
 - **Color Schemes:** https://wezfurlong.org/wezterm/colorschemes/
 - **Rose Pine:** https://rosepinetheme.com/
 - **Config Location:** `~/.config/wezterm/wezterm.lua`
-- **This Config:** `~/Development/codex/dotfiles/wezterm/`
+- **This Config:** `~/Development/workbench/dotfiles/wezterm/`
 
 ## Quick Start
 

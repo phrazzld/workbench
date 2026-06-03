@@ -1,35 +1,22 @@
 # Bin Directory
 
-Utility scripts and thinktank automation tools.
+Utility scripts for the local development environment.
 
 ## Installation
 
 Installation script adds this directory to PATH:
 ```bash
-export PATH="$PATH:$HOME/Development/codex/bin"
+export PATH="$PATH:$HOME/Development/workbench/bin"
 ```
 
-## TT Scripts
-
-Direct thinktank CLI automation using shared library (`tt-common.sh`):
-
-- `tt-review-diff` - Diff-focused code review (bugs, functional issues)
-- `tt-review` - General code review automation  
-- `tt-address` - Generate remediation plans from reviews
-- `tt-ticket` - Break plans into atomic tasks (TODO.md)
-- `tt-plan` - Create implementation plans from context
-- `tt-groom` - Organize and prioritize backlog
-- `tt-ideate` - Generate innovative backlog ideas
-- `tt-refactor` - Identify refactoring opportunities  
-- `tt-shrink` - Find code size optimization opportunities
-- `tt-security` - Security audit with OWASP focus
-- `tt-gordian` - Radical simplification analysis
-- `tt-align` - Philosophy alignment review
-
-## Other Utilities
+## Utilities
 
 - `alacritty-theme` - Theme switching for Alacritty
+- `ghostty-theme` - Theme switching for Ghostty
 - `image-shrink` - Backup + resize/recompress images for LLM-friendly galleries
+- `kill-ports-3000-3007.sh` - Clear common local dev server ports
+- `projects` - Project registry helper
+- `stripe-audit` - Stripe configuration audit helper
 - `toggle-theme`, `light-mode`, `dark-mode` - System theme control
 - `tmux-startup` - Development session startup
 - `adminifi` - Admin privilege escalation

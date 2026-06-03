@@ -3,8 +3,8 @@
 
 set -euo pipefail
 
-PROJECTS_FILE="${HOME}/Development/codex/docs/projects.md"
-NAMES_FILE="${HOME}/Development/codex/docs/project-names.md"
+PROJECTS_FILE="${HOME}/Development/workbench/docs/projects.md"
+NAMES_FILE="${HOME}/Development/workbench/docs/project-names.md"
 DEV_DIR="${HOME}/Development"
 
 # Colors

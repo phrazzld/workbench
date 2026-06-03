@@ -1,19 +1,20 @@
-# codex
+# workbench
 
-Configuration repository with AI prompt templates, Claude Code slash commands, and productivity tools for software development workflows.
+Personal configuration repository for development environment setup, terminal preferences, project registry docs, and utility scripts.
 
 ## Features
 
 - Shell configs (`.zshrc`, `.aliases`, `.env`)
-- Claude Code slash commands for structured workflows  
-- AI prompt templates and development standards
+- Terminal configs for Alacritty, Ghostty, WezTerm, Zellij, tmux, and Starship
+- Project registry docs and naming notes
+- Utility scripts for local development workflows
 - Git hooks and automated quality checks
 
 ## Installation
 
 ```bash
-git clone https://github.com/phrazzld/codex.git ~/Development/codex
-cd ~/Development/codex
+git clone https://github.com/phrazzld/workbench.git ~/Development/workbench
+cd ~/Development/workbench
 ./install.sh
 ```
 
@@ -21,8 +22,8 @@ cd ~/Development/codex
 ## Structure
 
 - `/dotfiles/` - Shell configs (`.zshrc`, `.aliases`, `.env`)
-- `/bin/` - Utilities and thinktank scripts
-- `/docs/` - Development philosophy and templates
+- `/bin/` - Local utility scripts
+- `/docs/` - Project registry, guides, and professional docs
 - `/scripts/` - System maintenance and setup
 
 
