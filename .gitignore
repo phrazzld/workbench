@@ -34,6 +34,9 @@ bin/thinktank-venv/
 **/dist/
 **/build/
 
+# Pi agent runtime state
+.pi/state/
+
 # Logs and temporary directories
 logs/
 .vercel
