@@ -10,6 +10,7 @@ alias compress='tar czf'
 alias decompress='tar xzf'
 alias f='fzf --bind "enter:execute(nvim {})"'
 alias c='claude --dangerously-skip-permissions'
+alias db='claude --dangerously-skip-permissions --append-system-prompt-file "$HOME/Documents/daybook/.claude/system-prompt.md"'
 alias cw='clauditor --watch'
 alias e='node $DEVELOPMENT/elevator/dist/cli.js'
 alias cub='ccusage blocks --live'
@@ -57,18 +58,42 @@ function _git_default_branch {
   return 1
 }
 
+function _git_switch_to_branch {
+  local branch="$1"
+
+  if git show-ref --verify --quiet "refs/heads/${branch}"; then
+    git switch "$branch"
+    return $?
+  fi
+
+  git switch --track -c "$branch" "origin/$branch"
+}
+
+function _git_sync_default_branch {
+  local branch="$1"
+
+  git fetch origin || return 1
+  _git_switch_to_branch "$branch" || return 1
+  git merge --ff-only "origin/$branch"
+}
+
 function gil {
   gal "$@"
 }
 
 function gal {
   local branch
+  if ! git remote get-url origin >/dev/null 2>&1; then
+    echo "❌ No 'origin' remote configured in this repo. Add one with: git remote add origin <url>"
+    return 1
+  fi
   branch=$(_git_default_branch) || {
     echo "❌ Could not determine remote default branch (expected origin/HEAD, origin/master, or origin/main)."
+    echo "   Try: git remote set-head origin --auto"
     return 1
   }
 
-  git fetch origin && git checkout "$branch" && git pull --ff-only origin "$branch"
+  _git_sync_default_branch "$branch"
 }
 
 alias gu='git config --local --list | grep "user"'
@@ -205,6 +230,7 @@ alias thabits='t ls +habits'
 alias tnext='t ls -n 10'
 alias tstreak='~/Documents/daybook/scripts/habit-streak.sh'
 alias tstreaks='~/Documents/daybook/scripts/habit-streaks.sh'
+alias q='~/Documents/daybook/scripts/quote-session.sh'
 
 # General shortcuts
 alias vtop='vtop --theme rose-pine'

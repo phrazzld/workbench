@@ -3,13 +3,11 @@
 # Modern shell configuration with enhanced productivity features
 # ===================================================================
 
-# --- CORE PLUGINS ---
-# Essential plugins for enhanced shell experience
-plugins=(
-  asdf                    # Version manager for multiple languages
-  zsh-autosuggestions    # Fish-like autosuggestions
-  zsh-syntax-highlighting # Syntax highlighting for commands
-)
+# macOS default soft limit is 256, too low for zellij + agent TUIs.
+# SIP blocks launchctl limit maxfiles on 13.5+, so we set it here
+# and let child processes (zellij, claude, codex, mosh) inherit.
+# Hard cap is kern.maxfilesperproc (~138k); 65536 is safely under.
+ulimit -n 65536
 
 # --- HOMEBREW INTEGRATION ---
 # Add Homebrew's zsh completions (Apple Silicon)
@@ -17,10 +15,26 @@ if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
   fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 fi
 
+# Grok CLI completions — registered before compinit so they load in the single
+# compinit pass below. Do NOT add a second compinit anywhere; it costs ~400ms.
+if [[ -d $HOME/.grok/completions/zsh ]]; then
+  fpath=($HOME/.grok/completions/zsh $fpath)
+fi
+
+# --- COMPLETION SYSTEM ---
+# Single compinit pass (formerly done by oh-my-zsh). -C trusts the existing
+# .zcompdump; rebuild it at most once a day.
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
 # --- CONFIGURATION SOURCING ---
 # Load configurations in order: env vars → functions → aliases → secrets
 source $HOME/.env                    # Environment variables and PATH
-[ -f $HOME/.fun ] && source $HOME/.fun  # Utility functions  
+[ -f $HOME/.fun ] && source $HOME/.fun  # Utility functions
 source $HOME/.aliases               # Command aliases and git helpers
 source $HOME/.secrets               # Machine-specific secrets
 
@@ -53,13 +67,10 @@ if command -v zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
-# ASDF - universal version manager
-if [ -f "$HOME/.asdf/asdf.sh" ]; then
-  source "$HOME/.asdf/asdf.sh"
+# Mise - universal version manager (replaced asdf 2026-06; reads .tool-versions)
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh)"
 fi
-
-# Docker Desktop integration
-[ -f $HOME/.docker/init-zsh.sh ] && source $HOME/.docker/init-zsh.sh || true
 
 # FZF - fuzzy finder with ripgrep integration
 if type rg &> /dev/null; then
@@ -91,10 +102,6 @@ esac
 # Deno runtime environment
 . "/Users/phaedrus/.deno/env"
 
-# --- COMPLETIONS ---
-# Electron-forge tab completion (version-specific)
-[[ -f $HOME/.asdf/installs/nodejs/17.9.1/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh ]] && . $HOME/.asdf/installs/nodejs/17.9.1/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh
-
 # --- PROMPT INITIALIZATION ---
 # Starship - modern cross-shell prompt
 if command -v starship &> /dev/null; then
@@ -112,27 +119,24 @@ export PATH=/Users/phaedrus/.opencode/bin:$PATH
 export PATH="/Users/phaedrus/.antigravity/antigravity/bin:$PATH"
 
 # --- PATH HYGIENE ---
-# Keep asdf shims first; keep npm-global later; de-dupe entries.
+# Keep npm-global last; de-dupe entries. (mise activate manages tool paths.)
 typeset -U path
-path=(${path:#$HOME/.asdf/shims} ${path:#$HOME/.asdf/bin} ${path:#$HOME/.npm-global/bin})
-path=($HOME/.asdf/shims $HOME/.asdf/bin $path)
+path=(${path:#$HOME/.npm-global/bin})
 if [[ -d $HOME/.npm-global/bin ]]; then
   path=($path $HOME/.npm-global/bin)
 fi
 typeset -U path
 
-# bun completions
+# --- DAYBOOK QUOTE OF SESSION ---
+# Deck-shuffled quote at the top of each interactive shell. The guard prevents
+# re-printing on subshells or `exec zsh`.
+if [[ -o interactive && -z "$QUOTE_SHOWN" ]]; then
+  export QUOTE_SHOWN=1
+  "$HOME/Documents/daybook/scripts/quote-session.sh" 2>/dev/null
+fi
+
+# bun
 [ -s "/Users/phaedrus/.bun/_bun" ] && source "/Users/phaedrus/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
@@ -143,3 +147,26 @@ eval "$(direnv hook zsh)"
 # Pop kitty keyboard protocol if a TUI app left it enabled (Claude Code bug)
 __reset_kitty_keyboard_protocol() { printf '\e[<u' 2>/dev/null; }
 precmd_functions+=(__reset_kitty_keyboard_protocol)
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/phaedrus/.local/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/phaedrus/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+# fpath + compinit intentionally removed. Grok completions are registered in the
+# Homebrew/completions block near the top so the single compinit pass picks them
+# up. Do NOT re-add `compinit` here — a second pass costs ~400ms every shell.
+# <<< grok installer <<<
+
+# --- SHELL PLUGINS ---
+# Brew-installed (formerly oh-my-zsh plugins). Syntax highlighting must be
+# sourced last — it wraps the line editor and anything loaded after it is
+# not highlighted.
+[ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
