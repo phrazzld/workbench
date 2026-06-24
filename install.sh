@@ -124,6 +124,11 @@ else
   echo -e "${GREEN}✓ zjstatus permission already granted${RESET}"
 fi
 
+
+# Setup Herdr configuration
+echo -e "${YELLOW}Setting up Herdr configuration...${RESET}"
+mkdir -p "$HOME/.config/herdr"
+ln -sf "$CONFIG_SUBDIR/herdr/config.toml" "$HOME/.config/herdr/config.toml" && echo -e "${GREEN}✓ herdr config${RESET}" || echo -e "${RED}✗ herdr config${RESET}"
 # Create Alacritty configuration directory and symlink
 echo -e "${YELLOW}Setting up Alacritty configuration...${RESET}"
 mkdir -p "$HOME/.config/alacritty"

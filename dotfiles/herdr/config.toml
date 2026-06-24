@@ -1,0 +1,99 @@
+# Herdr configuration — ~/Development/workbench
+# Starter config tuned for this machine. Edit and `herdr server reload-config`.
+
+onboarding = false
+
+[theme]
+name = "rose-pine"
+# Follow Ghostty light/dark if you ever swap; rose-pine dawn is the light pair
+auto_switch = false
+dark_name = "rose-pine"
+light_name = "rose-pine-dawn"
+
+[terminal]
+# $SHELL (zsh) is picked up automatically; leave empty.
+default_shell = ""
+# macOS: login shells so /usr/libexec/path_helper + Homebrew init run.
+shell_mode = "auto"
+# New panes inherit the source pane's cwd — stays in-project when splitting.
+new_cwd = "follow"
+
+[update]
+channel = "stable"
+version_check = true
+manifest_check = true
+
+[worktrees]
+directory = "~/.herdr/worktrees"
+
+[keys]
+prefix = "ctrl+b"
+# vim-style pane nav in prefix mode (you're coming from Zellij)
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+# Swap panes with shift
+swap_pane_left = "prefix+shift+h"
+swap_pane_down = "prefix+shift+j"
+swap_pane_up = "prefix+shift+k"
+swap_pane_right = "prefix+shift+l"
+# Zellij-style navigation: alt+h/l for tabs, alt+shift+h/l for workspaces
+# (keep prefix+n/p as fallback for terminal-ssh where alt chords may not pass through)
+next_tab = ["prefix+n", "alt+l"]
+previous_tab = ["prefix+p", "alt+h"]
+# Switch tabs directly: prefix+1..9
+switch_tab = "prefix+1..9"
+# Workspace switching
+previous_workspace = "alt+shift+h"
+next_workspace = "alt+shift+l"
+switch_workspace = "prefix+shift+1..9"
+# Agent focus
+focus_agent = "prefix+alt+1..9"
+# Zoom, sidebar, copy mode
+zoom = "prefix+z"
+toggle_sidebar = "prefix+b"
+copy_mode = "prefix+["
+detach = "prefix+q"
+workspace_picker = "prefix+w"
+new_workspace = "prefix+shift+n"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+new_tab = "prefix+c"
+split_vertical = "prefix+v"
+split_horizontal = "prefix+minus"
+close_pane = "prefix+x"
+resize_mode = "prefix+r"
+
+[ui]
+sidebar_width = 26
+mouse_capture = true
+pane_borders = true
+pane_gaps = true
+show_agent_labels_on_pane_borders = true
+# Group agents by workspace in the sidebar
+agent_panel_sort = "spaces"
+accent = "#c4a7e7"
+
+[ui.toast]
+# In-app toasts for agent state changes
+delivery = "herdr"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "bottom-right"
+
+[ui.sound]
+# Audio cue when an agent finishes or needs attention in a background workspace
+enabled = false
+
+[session]
+# Resume agent conversations after server restart (requires integrations)
+resume_agents_on_restore = true
+
+[remote]
+manage_ssh_config = true
+
+[experimental]
+# Save pane scrollback across full server restarts
+pane_history = true
