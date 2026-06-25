@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# herdr-attention-nav — focus the next/previous workspace whose agent needs
+# attention, skipping workspaces whose agent is actively "working".
+#
+# Usage:
+#   herdr-attention-nav next [--dry-run]
+#   herdr-attention-nav prev [--dry-run]
+#
+# "Needs attention" = agent_status not in SKIP (default: working). Done, idle,
+# and blocked all qualify. Tweak SKIP below to taste (e.g. add "unknown" to
+# ignore plain shells with no detected agent).
+set -euo pipefail
+
+exec python3 - "${1:-next}" "${2:-}" <<'PY'
+import sys, json, subprocess
+
+direction = sys.argv[1] if len(sys.argv) > 1 else "next"
+dry       = len(sys.argv) > 2 and sys.argv[2] == "--dry-run"
+
+SKIP = {"working"}  # statuses to skip; everything else is an attention target
+
+out = subprocess.check_output(["herdr", "workspace", "list"], text=True)
+ws = json.loads(out)["result"]["workspaces"]
+ordered = sorted(ws, key=lambda w: w["number"])
+cand = [w for w in ordered if w["agent_status"] not in SKIP]
+if not cand:
+    sys.stderr.write("no attention workspaces\n")
+    sys.exit(0)
+
+cur = next((w["number"] for w in ordered if w.get("focused")), None)
+if cur is None:
+    target = cand[0]
+elif direction == "prev":
+    target = next((w for w in reversed(cand) if w["number"] < cur), cand[-1])
+else:
+    target = next((w for w in cand if w["number"] > cur), cand[0])
+
+print(f'{target["workspace_id"]}  {target["label"]}  [{target["agent_status"]}]')
+if not dry:
+    subprocess.run(["herdr", "workspace", "focus", target["workspace_id"]], check=True)
+PY

@@ -50,6 +50,10 @@ next_workspace = "alt+shift+l"
 switch_workspace = "prefix+shift+1..9"
 # Agent focus
 focus_agent = "prefix+alt+1..9"
+# Cycle agents in attention order (pairs with alt+shift+h/l workspace nav:
+# h/l = workspaces, j/k = agents). Requires agent_panel_sort = "priority".
+next_agent = "alt+shift+j"
+previous_agent = "alt+shift+k"
 # Zoom, sidebar, copy mode
 zoom = "prefix+z"
 toggle_sidebar = "prefix+b"
@@ -66,13 +70,14 @@ close_pane = "prefix+x"
 resize_mode = "prefix+r"
 
 [ui]
-sidebar_width = 26
+sidebar_width = 24
 mouse_capture = true
 pane_borders = true
-pane_gaps = true
+pane_gaps = false
 show_agent_labels_on_pane_borders = true
-# Group agents by workspace in the sidebar
-agent_panel_sort = "spaces"
+# Attention queue: surface blocked/done agents ahead of working ones, so
+# next_agent/previous_agent (alt+shift+j/k) walk what needs attention first.
+agent_panel_sort = "priority"
 accent = "#c4a7e7"
 
 [ui.toast]

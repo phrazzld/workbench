@@ -36,7 +36,7 @@ font-feature = +zero
 font-feature = +cv02
 font-feature = +ss03
 font-feature = +ss05
-adjust-cell-height = 4
+adjust-cell-height = 0
 adjust-underline-position = 2
 adjust-cursor-thickness = 2
 adjust-box-thickness = 1
@@ -46,8 +46,8 @@ minimum-contrast = 1.1
 bold-is-bright = false
 
 # ── Window ────────────────────────────────────
-window-padding-x = 16
-window-padding-y = 14
+window-padding-x = 10
+window-padding-y = 6
 window-padding-balance = true
 window-padding-color = extend
 window-inherit-working-directory = true
