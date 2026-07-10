@@ -4,7 +4,7 @@ Personal configuration repository for development environment setup, terminal pr
 
 ## Features
 
-- Shell configs (`.zshrc`, `.aliases`, `.env`)
+- Shell configs (`.zshenv`, `.zshrc`, `.aliases`, `.env`)
 - Terminal configs for Alacritty, Ghostty, WezTerm, Zellij, tmux, and Starship
 - Project registry docs and naming notes
 - Utility scripts for local development workflows
@@ -33,7 +33,7 @@ cd ~/Development/workbench
 
 ## Structure
 
-- `/dotfiles/` - Shell configs (`.zshrc`, `.aliases`, `.env`)
+- `/dotfiles/` - Shell configs (`.zshenv`, `.zshrc`, `.aliases`, `.env`)
 - `/bin/` - Local utility scripts
 - `/docs/` - Project registry, guides, and professional docs
 - `/scripts/` - System maintenance and setup

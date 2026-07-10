@@ -19,6 +19,7 @@ echo -e "${BLUE}Installing configuration files from $WORKBENCH_DIR${RESET}"
 # Create symlinks for core configuration files
 echo -e "${YELLOW}Creating symlinks for core configuration files...${RESET}"
 ln -sf "$CONFIG_SUBDIR/.zshrc" "$HOME/.zshrc" && echo -e "${GREEN}✓ .zshrc${RESET}" || echo -e "${RED}✗ .zshrc${RESET}"
+ln -sf "$CONFIG_SUBDIR/.zshenv" "$HOME/.zshenv" && echo -e "${GREEN}✓ .zshenv${RESET}" || echo -e "${RED}✗ .zshenv${RESET}"
 ln -sf "$CONFIG_SUBDIR/.aliases" "$HOME/.aliases" && echo -e "${GREEN}✓ .aliases${RESET}" || echo -e "${RED}✗ .aliases${RESET}"
 ln -sf "$CONFIG_SUBDIR/.env" "$HOME/.env" && echo -e "${GREEN}✓ .env${RESET}" || echo -e "${RED}✗ .env${RESET}"
 ln -sf "$CONFIG_SUBDIR/.fun" "$HOME/.fun" && echo -e "${GREEN}✓ .fun${RESET}" || echo -e "${RED}✗ .fun${RESET}"
