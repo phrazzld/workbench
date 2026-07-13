@@ -248,12 +248,12 @@ alias prdf="pnpm run dev:full"
 alias dash='cd ~/Development/overmind && pnpm dev'
 alias dash-html='cd ~/Development/overmind && pnpm dev -- --html && open ~/overmind.html'
 
-alias l="eza --long --all --git --icons --group-directories-first --color=never"
-alias ls="eza --icons --group-directories-first --color=never"
-alias ll="eza --long --git --icons --group-directories-first --color=never"
-alias la="eza --long --all --git --icons --group-directories-first --color=never"
-alias lt="eza --tree --git --icons --group-directories-first --color=never"
-alias lta="eza --tree --all --git --icons --group-directories-first --color=never"
+alias l="eza --long --all --git --icons --group-directories-first --color=auto"
+alias ls="eza --icons --group-directories-first --color=auto"
+alias ll="eza --long --git --icons --group-directories-first --color=auto"
+alias la="eza --long --all --git --icons --group-directories-first --color=auto"
+alias lt="eza --tree --git --icons --group-directories-first --color=auto"
+alias lta="eza --tree --all --git --icons --group-directories-first --color=auto"
 alias dark="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to true'"
 alias light="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to false'"
 alias dev="$DEVELOPMENT/workbench/bin/tmux-startup"
