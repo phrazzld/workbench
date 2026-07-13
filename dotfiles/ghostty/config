@@ -26,14 +26,14 @@ background-blur-radius = 0
 
 # ── Typography ────────────────────────────────
 # FiraCode: beautiful ligatures (=> != >= -> |>)
-# Retina weight: optimized for screen rendering
+# Retina weight: optimized for screen rendering without synthetic emphasis
 font-family = FiraCode Nerd Font
 font-style = Retina
-font-style-bold = Bold
+font-style-bold = Retina
 font-style-italic = Medium
-font-style-bold-italic = SemiBold
+font-style-bold-italic = Retina
 font-size = 15
-font-thicken = true
+font-thicken = false
 font-feature = +zero
 font-feature = +cv02
 font-feature = +ss03

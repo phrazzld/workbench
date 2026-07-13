@@ -12,7 +12,7 @@
 // Design: connected powerline at the SECTION level —
 //   [mode] ▸ [ session ] ▸ [ tab  tab  tab … ] ▸            ◂ [ clock ]
 // Tabs share ONE overlay strip (no per-tab edges, so they bleed together);
-// the active tab pops via bright bold rose text rather than a colored fill,
+// the active tab pops via bright rose text rather than a colored fill,
 // because zjstatus can't color-bleed between differently-colored tabs.
 layout {
     default_tab_template {
@@ -20,7 +20,7 @@ layout {
         pane size=1 borderless=true {
             plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
                 // session arrow bleeds into the overlay tab-strip; strip closes into base.
-                format_left  "{mode}#[bg=#c4a7e7,fg=#191724,bold]  {session} #[fg=#c4a7e7,bg=#26233a]{tabs}#[fg=#26233a,bg=#191724]"
+                format_left  "{mode}#[bg=#c4a7e7,fg=#191724]  {session} #[fg=#c4a7e7,bg=#26233a]{tabs}#[fg=#26233a,bg=#191724]"
                 format_right "#[fg=#1f1d2e,bg=#191724]{datetime}"
                 format_space "#[bg=#191724]"
                 border_enabled "false"
@@ -29,26 +29,26 @@ layout {
                 // ── Mode flag: empty in normal; otherwise a colored pill whose arrow
                 //    bleeds into the iris session segment (trailing bg = iris). ──
                 mode_normal       ""
-                mode_locked       "#[bg=#eb6f92,fg=#191724,bold] LOCKED #[fg=#eb6f92,bg=#c4a7e7]"
-                mode_pane         "#[bg=#c4a7e7,fg=#191724,bold] PANE #[fg=#c4a7e7,bg=#c4a7e7]"
-                mode_tab          "#[bg=#9ccfd8,fg=#191724,bold] TAB #[fg=#9ccfd8,bg=#c4a7e7]"
-                mode_resize       "#[bg=#f6c177,fg=#191724,bold] RESIZE #[fg=#f6c177,bg=#c4a7e7]"
-                mode_move         "#[bg=#f6c177,fg=#191724,bold] MOVE #[fg=#f6c177,bg=#c4a7e7]"
-                mode_scroll       "#[bg=#ebbcba,fg=#191724,bold] SCROLL #[fg=#ebbcba,bg=#c4a7e7]"
-                mode_enter_search "#[bg=#ebbcba,fg=#191724,bold] SEARCH #[fg=#ebbcba,bg=#c4a7e7]"
-                mode_search       "#[bg=#ebbcba,fg=#191724,bold] SEARCH #[fg=#ebbcba,bg=#c4a7e7]"
-                mode_session      "#[bg=#31748f,fg=#e0def4,bold] SESSION #[fg=#31748f,bg=#c4a7e7]"
-                mode_rename_tab   "#[bg=#9ccfd8,fg=#191724,bold] RENAME #[fg=#9ccfd8,bg=#c4a7e7]"
-                mode_rename_pane  "#[bg=#c4a7e7,fg=#191724,bold] RENAME #[fg=#c4a7e7,bg=#c4a7e7]"
+                mode_locked       "#[bg=#eb6f92,fg=#191724] LOCKED #[fg=#eb6f92,bg=#c4a7e7]"
+                mode_pane         "#[bg=#c4a7e7,fg=#191724] PANE #[fg=#c4a7e7,bg=#c4a7e7]"
+                mode_tab          "#[bg=#9ccfd8,fg=#191724] TAB #[fg=#9ccfd8,bg=#c4a7e7]"
+                mode_resize       "#[bg=#f6c177,fg=#191724] RESIZE #[fg=#f6c177,bg=#c4a7e7]"
+                mode_move         "#[bg=#f6c177,fg=#191724] MOVE #[fg=#f6c177,bg=#c4a7e7]"
+                mode_scroll       "#[bg=#ebbcba,fg=#191724] SCROLL #[fg=#ebbcba,bg=#c4a7e7]"
+                mode_enter_search "#[bg=#ebbcba,fg=#191724] SEARCH #[fg=#ebbcba,bg=#c4a7e7]"
+                mode_search       "#[bg=#ebbcba,fg=#191724] SEARCH #[fg=#ebbcba,bg=#c4a7e7]"
+                mode_session      "#[bg=#31748f,fg=#e0def4] SESSION #[fg=#31748f,bg=#c4a7e7]"
+                mode_rename_tab   "#[bg=#9ccfd8,fg=#191724] RENAME #[fg=#9ccfd8,bg=#c4a7e7]"
+                mode_rename_pane  "#[bg=#c4a7e7,fg=#191724] RENAME #[fg=#c4a7e7,bg=#c4a7e7]"
 
                 // ── Tabs: ONE continuous overlay strip, no arrows between them.
-                //    Active = bright bold rose; inactive = subtle. They bleed together. ──
+                //    Active = bright rose; inactive = subtle. They bleed together. ──
                 tab_normal            "#[bg=#26233a,fg=#908caa] {index} {name} "
-                tab_active            "#[bg=#26233a,fg=#ebbcba,bold] {index} {name} "
+                tab_active            "#[bg=#26233a,fg=#ebbcba] {index} {name} "
                 tab_normal_fullscreen "#[bg=#26233a,fg=#908caa] {index} {name} {fullscreen_indicator}"
-                tab_active_fullscreen "#[bg=#26233a,fg=#ebbcba,bold] {index} {name} {fullscreen_indicator}"
+                tab_active_fullscreen "#[bg=#26233a,fg=#ebbcba] {index} {name} {fullscreen_indicator}"
                 tab_normal_sync       "#[bg=#26233a,fg=#908caa] {index} {name} {sync_indicator}"
-                tab_active_sync       "#[bg=#26233a,fg=#ebbcba,bold] {index} {name} {sync_indicator}"
+                tab_active_sync       "#[bg=#26233a,fg=#ebbcba] {index} {name} {sync_indicator}"
                 tab_fullscreen_indicator " "
                 tab_sync_indicator       " "
                 tab_floating_indicator   "󰉈 "

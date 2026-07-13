@@ -86,9 +86,9 @@ time_format = "%H:%M"
 style = "bg:overlay fg:muted"
 
 [character]
-success_symbol = "[❯](bold iris)"
-error_symbol   = "[❯](bold love)"
-vimcmd_symbol  = "[❮](bold foam)"
+success_symbol = "[❯](iris)"
+error_symbol   = "[❯](love)"
+vimcmd_symbol  = "[❮](foam)"
 
 [status]
 disabled = false
