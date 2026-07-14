@@ -9,21 +9,23 @@ alias clear="clear && source ~/.zshrc && exec zsh"
 alias compress='tar czf'
 alias decompress='tar xzf'
 alias f='fzf --bind "enter:execute(nvim {})"'
-alias c='op-agent roster dispatch kaylee'
-alias db='op-agent claude --dangerously-skip-permissions --append-system-prompt-file "$HOME/Documents/daybook/.claude/system-prompt.md"'
+alias c='claude --dangerously-skip-permissions'
+alias db='claude --dangerously-skip-permissions --append-system-prompt-file "$HOME/Documents/daybook/.claude/system-prompt.md"'
 alias cw='clauditor --watch'
 alias e='node $DEVELOPMENT/elevator/dist/cli.js'
 alias cub='ccusage blocks --live'
-alias cx='op-agent roster dispatch amos'
-alias cxg='op-agent codex --profile glm --search --dangerously-bypass-approvals-and-sandbox'  # GLM 5.2 via OpenRouter (e.g. when out of GPT)
-alias g='op-agent gemini'
-alias o='op-agent opencode'
-alias omp='op-agent roster dispatch urza'
-alias ompr='op-agent omp'
+alias cx='codex --search --dangerously-bypass-approvals-and-sandbox'
+alias cxg='codex --profile glm --search --dangerously-bypass-approvals-and-sandbox'  # GLM 5.2 via OpenRouter (e.g. when out of GPT)
+alias g='gemini'
+alias o='opencode'
+alias ompr='omp'
+alias rc='roster dispatch kaylee'
+alias rcx='roster dispatch amos'
+alias romp='roster dispatch urza'
 
 # Pi agents
-alias i='op-agent pictl'
-alias im='op-agent pictl meta'
+alias i='pictl'
+alias im='pictl meta'
 
 # Git aliases
 alias gs='git status --short'
@@ -102,7 +104,7 @@ function gal {
 alias gu='git config --local --list | grep "user"'
 alias gm='git status --porcelain | awk "{print \$2}" | xargs $EDITOR'
 alias resolve-conflicts="git diff --name-only | uniq | xargs nvim"
-alias rc='resolve-conflicts'
+alias rconflicts='resolve-conflicts'
 alias trigger-build='git commit --allow-empty -m "trigger build" && git push'
 
 # Enhanced Git Visibility Aliases

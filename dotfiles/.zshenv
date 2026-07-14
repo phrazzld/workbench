@@ -19,6 +19,10 @@ done
 unset _codex_path_dir
 export PATH
 
-# Never load 1Password service credentials in shell startup. Human `op` use
-# retains its normal Desktop integration and interactive authentication; agent
-# entrypoints are isolated by `op-agent` and cannot inherit a vault token.
+# Supply only explicitly marked, value-free routes. Roster clears the inherited
+# environment and maps these into its child; raw Harness commands remain raw.
+if [[ -r "$HOME/.config/roster/runtime.env" ]]; then
+  set -a
+  source "$HOME/.config/roster/runtime.env"
+  set +a
+fi

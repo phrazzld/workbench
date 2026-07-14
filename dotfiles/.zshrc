@@ -36,8 +36,6 @@ fi
 source $HOME/.env                    # Environment variables and PATH
 [ -f $HOME/.fun ] && source $HOME/.fun  # Utility functions
 source $HOME/.aliases               # Command aliases and git helpers
-# Agent entrypoints use the value-free Mint runtime and an empty inherited env.
-[ -f $HOME/.config/op/op-agent.sh ] && source $HOME/.config/op/op-agent.sh
 
 # --- HISTORY CONFIGURATION ---
 # Enhanced history settings for better command recall
